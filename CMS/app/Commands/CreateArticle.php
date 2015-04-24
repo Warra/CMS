@@ -5,7 +5,7 @@ use App\GenerateId;
 use App\Article;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-Class CreateArticle extends Command implements SelfHandling {
+class CreateArticle extends Command implements SelfHandling {
 
 	protected $id;
 	protected $attributes;
