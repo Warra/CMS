@@ -23,3 +23,6 @@ Route::controllers([
 Route::get('/articles/all', 'ArticleController@showAll');
 Route::get('/articles/{id}', 'ArticleController@show');
 
+Route::get('/view', 'ArticleController@view');
+// Route::patch('/articles/{id}/{name}/{description}/', 'ArticleController@update');
+
