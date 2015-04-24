@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Database\Eloquent\Model;
-use App\Commands\createArticle;
+use App\Commands\CreateArticle;
 use App\GenerateId;
 use App\Seeder;
 
@@ -8,11 +8,31 @@ class ArticleTableSeeder extends Seeder {
 
 	public function run()
 	{
-		// dd(new GenerateId);
+		$articles = [
+			[
+				"name"	=>	"first article",
+				"description"	=>	"first description"
+			],
+			[
+				"name"	=>	"fantastic journey",
+				"description"	=>	"tomorrow"
+			],
+			[
+				"name"	=>	"hot head",
+				"description"	=>	"best story"
+			],
+			[
+				"name"	=>	"South Paw",
+				"description"	=>	"Boxing Style"
+			],						
+		];
 
-		Bus::dispatch(
-        	new CreateArticle(new GenerateId, "first article", "first description")
-      	);
+		foreach ($articles as $article) {
+			Bus::dispatch(
+		      	new CreateArticle(new GenerateId, $article)
+			);			
+		}
+
 
 	}
 

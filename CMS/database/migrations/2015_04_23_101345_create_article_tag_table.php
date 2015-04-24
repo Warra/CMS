@@ -17,6 +17,7 @@ class CreateArticleTagTable extends Migration {
 			$table->string('id')->primary();
 			$table->string('article_id');
 			$table->string('tag_id');
+			$table->timestamps();
 		});
 	}
 

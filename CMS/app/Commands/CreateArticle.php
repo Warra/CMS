@@ -8,19 +8,17 @@ use Illuminate\Contracts\Bus\SelfHandling;
 Class CreateArticle extends Command implements SelfHandling {
 
 	protected $id;
-	protected $name;
-	protected $desc;
+	protected $attributes;
 
 	/**
 	 * Create a new command instance.
 	 *
 	 * @return void
 	 */
-	public function __construct(GenerateId $id, $name, $desc)
+	public function __construct(GenerateId $id, $attributes)
 	{
 		$this->id = $id;
-		$this->name = $name;
-		$this->desc = $desc;
+		$this->attributes = $attributes;
 	}
 
 	/**
@@ -30,7 +28,7 @@ Class CreateArticle extends Command implements SelfHandling {
 	 */
 	public function handle()
 	{
-		$article = new Article($this->name, $this->desc);
+		$article = new Article($this->attributes);
 		$article->id = $this->id;
 		$article->save();
 	}
