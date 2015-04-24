@@ -19,3 +19,7 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::get('/articles/all', 'ArticleController@showAll');
+Route::get('/articles/{id}', 'ArticleController@show');
+

@@ -6,4 +6,8 @@ class Tag extends Model {
 
 	protected $fillable = ['name'];
 
+  public function Article() {
+    return $this->belongsToMany('Article');
+  }
+
 }
