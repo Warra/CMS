@@ -39,6 +39,9 @@
         </tr>
       @endforeach
     </tbody>
-  </table>
+  </table>  
+  <a href="/articles"><button>Go to Articles</button></a>
+  <a href="/tags"><button>Go to Tags</button></a>
 </body>
+  
 </html>

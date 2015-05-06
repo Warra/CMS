@@ -12,7 +12,7 @@ class TagController extends Controller {
      *
      * @return Response
      */
-    public function show()
+    public function view()
     {
         $tags = Tag::all();
         return view('Tags', ['tags' => $tags]);

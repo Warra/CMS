@@ -29,7 +29,7 @@ Route::post('/articles/{id}/update', 'ArticleController@update');
 Route::post('/articles/{id}/delete', 'ArticleController@delete');
 
 //Tag Routes
-Route::get('/tags', 'TagController@show');
+Route::get('/tags', 'TagController@view');
 Route::post('/tags{id}/', 'TagController@updateShow');
 Route::post('/tags{id}/update', 'TagController@update');
 Route::post('/tags{id}/delete', 'TagController@delete');
