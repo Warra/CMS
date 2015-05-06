@@ -1,8 +1,12 @@
 <?php namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Input as Input;
+use Illuminate\Foundation\Bus\DispatchesCommands;
+use App\Commands\UpdateTag;
+use App\Commands\DeleteTag;
 use App\Tag;
 
 class TagController extends Controller {
-
+    use DispatchesCommands;
     /**
      * Show the application welcome screen to the user.
      *
@@ -16,14 +20,27 @@ class TagController extends Controller {
 
     public function updateShow($id)
     {
-        $tag = Tag::where('id', $id);
-        return view('Tags', ['tags' => $tag]);
+        $tag = Tag::where('id', $id)->first();
+        return view('UpdateTag', ['tag' => $tag]);
     }
 
-    public function delete()
+
+
+    public function update($id) {
+        $name = Input::get('name');    
+        \Bus::dispatch(
+              new UpdateTag($id, $name)
+        );
+        return $this->show();
+    }
+
+    public function delete($id)
     {
-        $tags = Tag::all();
-        return view('Tags', ['tags' => $tags]);
+        $tag = Tag::where('id', $id)->first();
+        \Bus::dispatch(
+              new DeleteTag($id)
+        );
+        return $this->show();
     }
 
 }
