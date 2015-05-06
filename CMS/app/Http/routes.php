@@ -20,11 +20,16 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+//Article Routes
 Route::get('/articles/{id}', 'ArticleController@show');
 Route::post('/articles/{id}', 'ArticleController@updateShow');
 
 Route::get('/articles', 'ArticleController@view');
 Route::post('/articles/{id}/update', 'ArticleController@update');
-
-
 Route::post('/articles/{id}/delete', 'ArticleController@delete');
+
+//Tag Routes
+Route::get('/tags', 'TagController@show');
+Route::get('/tags', 'TagController@updateShow');
+Route::get('/tags', 'TagController@update');
+Route::get('/tags', 'TagController@delete');
