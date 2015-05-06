@@ -34,6 +34,14 @@ class UpdateArticle extends Command implements SelfHandling {
     $article->name = $name;
     $article->description = $description;
     $article->save();
+    // event(new updateArticle($this->id, $this->name, $this->description));
   }
+
+  // public function updateArticle($id, $name, $description) {
+  //   $article = Article::find($id)
+  //   $article->name = $name;
+  //   $article->description = $description;
+  //   $article->save();
+  // }
 
 }

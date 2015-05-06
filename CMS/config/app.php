@@ -176,7 +176,7 @@ return [
 		'File'      => 'Illuminate\Support\Facades\File',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',
 		'HTML'      => 'Illuminate\Html\HtmlFacade',
-    'Form'      => 'Illuminate\Html\FormFacade',
+    	'Form'      => 'Illuminate\Html\FormFacade',
 		'Input'     => 'Illuminate\Support\Facades\Input',
 		'Inspiring' => 'Illuminate\Foundation\Inspiring',
 		'Lang'      => 'Illuminate\Support\Facades\Lang',

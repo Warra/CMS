@@ -10,9 +10,10 @@
 </head>
 <body>
   <table class="table table-hover table-bordered">
-      <th>id</th>
-      <th>name</th>
-      <th>description</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Update</th>
     <tbody>
       @foreach ($articles as $article)
         <tr>
@@ -24,7 +25,12 @@
           </td>
           <td>
             {!! $article->description !!}    
-          </td>        
+          </td>
+          <td>
+            {!! Form::open(["url"=>action("ArticleController@show", $article->id)]) !!}
+            {!! Form::submit("update") !!}
+            {!! Form::close() !!}
+          </td>      
         </tr>
       @endforeach
     </tbody>
