@@ -20,16 +20,11 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-// Route::get('/articles/all', 'ArticleController@showAll');
 Route::get('/articles/{id}', 'ArticleController@show');
-Route::patch('/articles/{id}/{name}/{description}', 'ArticleController@updateArticle');
+Route::post('/articles/{id}', 'ArticleController@updateShow');
 
 Route::get('/articles', 'ArticleController@view');
 Route::post('/articles/{id}/update', 'ArticleController@update');
 
-Route::patch('updateTest/{id}')
-// Route::patch('/articles{id}')
-// Route::get('/articles/{id}', 'ArticleController@updateArticle');
 
-// Route::patch('/articles/{id}/{name}/{description}/', 'ArticleController@update');
-
+Route::post('/articles/{id}/delete', 'ArticleController@delete');

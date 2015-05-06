@@ -14,11 +14,12 @@
       <th>Name</th>
       <th>Description</th>
       <th>Update</th>
+      <th>Delete</th>
     <tbody>
       @foreach ($articles as $article)
         <tr>
           <td>
-            {!! $article->id !!}    
+            {!! $article->id !!}
           </td>
           <td>
             {!! $article->name !!}    
@@ -27,10 +28,15 @@
             {!! $article->description !!}    
           </td>
           <td>
-            {!! Form::open(["url"=>action("ArticleController@show", $article->id)]) !!}
+            {!! Form::open(["url"=>action("ArticleController@updateShow", $article->id)]) !!}
             {!! Form::submit("update") !!}
             {!! Form::close() !!}
-          </td>      
+          </td>
+          <td>
+            {!! Form::open(["url"=>action("ArticleController@delete", $article->id)]) !!}
+            {!! Form::submit("delete") !!}
+            {!! Form::close() !!}
+          </td>    
         </tr>
       @endforeach
     </tbody>

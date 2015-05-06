@@ -2,6 +2,8 @@
 use App\Article;
 use Illuminate\Support\Facades\Input as Input;
 use Illuminate\Foundation\Bus\DispatchesCommands;
+use App\Commands\UpdateArticle;
+use App\Commands\DeleteArticle;
 
 
 class ArticleController extends Controller
@@ -28,44 +30,39 @@ class ArticleController extends Controller
     return view('welcome');
   }
 
-  public function showAll()
-  {
-    return Article::all();
-  }
 
-  public function show($id)
-  {
-    // dd($id);
-    return Article::where('id', $id)->get();
-  }
-
-  public function update($id)
-  {
-    $name = Input::get("name");
-    $description = Input::get("description");
-    // $article = Article::find($id);
-    Bus::dispatch(
-          new UpdateArticle($id, $name, $description)
-    );
-    return "Article Updated Successfully";
-  }
-
+  //display function(s)
   public function view()
   {
     $articles = Article::all();
     return view('articles', ['articles' => $articles]);
   }
 
-  public function updateArticle($id)
+  //update functions
+  public function updateShow($id)
   {
     $article = Article::where('id', $id)->first();
     return view('UpdateArticle', ['article' => $article]);
   }
 
-  public function updateTest($id, $name, $description) {
-    Bus::dispatch(
+  public function update($id)
+  {
+    $name = Input::get("name");
+    $description = Input::get("description");
+    \Bus::dispatch(
           new UpdateArticle($id, $name, $description)
     );
+    return $this->view();
   }
+
+  //delete functions
+  public function delete($id)
+  {
+    \Bus::dispatch(
+          new DeleteArticle($id)
+    );
+    return $this->view();
+  }
+
 
 }

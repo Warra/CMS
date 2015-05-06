@@ -1,11 +1,10 @@
 <?php namespace App\Commands;
 
 use App\Commands\Command;
-use App\GenerateId;
 use App\Article;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class UpdateArticle extends Command implements SelfHandling {
+class DeleteArticle extends Command implements SelfHandling {
 
   protected $id;
   protected $name;
@@ -16,11 +15,9 @@ class UpdateArticle extends Command implements SelfHandling {
    *
    * @return void
    */
-  public function __construct($id, $name, $description)
+  public function __construct($id)
   {
     $this->id = $id;
-    $this->name = $name;
-    $this->description = $description;
   }
 
   /**
@@ -31,9 +28,7 @@ class UpdateArticle extends Command implements SelfHandling {
   public function handle()
   {
     $article = Article::find($this->id);
-    $article->name = $this->name;
-    $article->description = $this->description;
-    $article->save();
+    $article->delete();
   }
 
 }
