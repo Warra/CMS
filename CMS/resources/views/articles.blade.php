@@ -12,6 +12,7 @@
       <th>ID</th>
       <th>Name</th>
       <th>Description</th>
+      <th>Tag(s)</th>
       <th>Update</th>
       <th>Delete</th>
     <tbody>
@@ -27,6 +28,9 @@
             {!! $article->description !!}    
           </td>
           <td>
+            {!! $article->setTagsString() !!}
+          </td>
+          <td>
             {!! Form::open(["url"=>action("ArticleController@updateShow", $article->id)]) !!}
             {!! Form::submit("update") !!}
             {!! Form::close() !!}
@@ -40,8 +44,8 @@
       @endforeach
     </tbody>
   </table>  
-  <a href="/articles"><button>Go to Articles</button></a>
-  <a href="/tags"><button>Go to Tags</button></a>
+  <a href="/articles" style="color:black;"><button>Go to Articles</button></a>
+  <a href="/tags" style="color: black;"><button>Go to Tags</button></a>
 </body>
   
 </html>

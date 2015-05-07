@@ -24,8 +24,8 @@ Class CreateTag extends Command implements SelfHandling {
    */
   public function handle()
   {
-    $article = new Tag($this->attributes);
-    $article->id = $this->id;
-    $article->save();
+    $tag = new Tag($this->attributes);
+    $tag->id = $this->id;
+    $tag->save();
   }
 }

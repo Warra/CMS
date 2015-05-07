@@ -36,7 +36,7 @@
       @endforeach
     </tbody>
   </table>
-  <a href="/articles"><button>Go to Articles</button></a>
-  <a href="/tags"><button>Go to Tags</button></a>
+  <a href="/articles" style="color:black;"><button>Go to Articles</button></a>
+  <a href="/tags" style="color: black;"><button>Go to Tags</button></a>
 </body>
 </html>

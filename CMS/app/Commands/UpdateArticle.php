@@ -3,24 +3,30 @@
 use App\Commands\Command;
 use App\GenerateId;
 use App\Article;
+use App\Tag;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 
 class UpdateArticle extends Command implements SelfHandling {
+  use DispatchesCommands;
 
   protected $id;
   protected $name;
   protected $description;
+  protected $tags;
 
   /**
    * Create a new command instance.
    *
    * @return void
    */
-  public function __construct($id, $name, $description)
+  public function __construct($id, $name, $description, $tags)
   {
     $this->id = $id;
     $this->name = $name;
     $this->description = $description;
+    $this->tags = $tags;
   }
 
   /**
@@ -33,6 +39,24 @@ class UpdateArticle extends Command implements SelfHandling {
     $article = Article::find($this->id);
     $article->name = $this->name;
     $article->description = $this->description;
+
+    $tag_ids = [];
+    foreach ($this->tags as $tag) {
+      $id = DB::table('tags')->where('name', $tag)->lists('id');
+      if(isset($id[0])) {
+        $tag_ids[] = $id[0];
+      } else {
+        $tag_name = [
+            "name" => $tag
+        ];
+
+        \Bus::dispatch(
+            new CreateTag(new GenerateId, $tag_name)
+        ); 
+        $tag_ids[] = DB::table('tags')->orderBy('created_at', 'desc')->first()->id;
+      }
+    }
+    $article->tags()->sync($tag_ids);
     $article->save();
   }
 

@@ -31,7 +31,7 @@ class TagController extends Controller {
         \Bus::dispatch(
               new UpdateTag($id, $name)
         );
-        return $this->show();
+        return redirect()->route('/articles');
     }
 
     public function delete($id)

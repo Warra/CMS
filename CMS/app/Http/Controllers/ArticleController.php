@@ -49,10 +49,12 @@ class ArticleController extends Controller
   {
     $name = Input::get("name");
     $description = Input::get("description");
+    $tags = $this->getTags(Input::get('tags'));
+    // dd($tags);
     \Bus::dispatch(
-          new UpdateArticle($id, $name, $description)
+          new UpdateArticle($id, $name, $description, $tags)
     );
-    return $this->view();
+    return redirect()->route('/articles');
   }
 
   //delete functions
@@ -62,6 +64,16 @@ class ArticleController extends Controller
           new DeleteArticle($id)
     );
     return $this->view();
+  }
+
+  //tag functions
+
+  //get tags string
+  //split by ','
+  //return tags in an array
+  public function getTags($tags) {
+    $split_tags = array_map('trim', explode(',', $tags));
+    return $split_tags;
   }
 
 

@@ -23,7 +23,10 @@ Route::controllers([
 //Article Routes
 Route::get('/articles/{id}', 'ArticleController@show');
 
-Route::get('/articles', 'ArticleController@view');
+Route::get('/articles', [
+    'as' => '/articles',
+    'uses' => 'ArticleController@view']);
+
 Route::post('/articles/{id}/', 'ArticleController@updateShow');
 Route::post('/articles/{id}/update', 'ArticleController@update');
 Route::post('/articles/{id}/delete', 'ArticleController@delete');
