@@ -73,6 +73,7 @@ class ArticleController extends Controller
   //return tags in an array
   public function getTags($tags) {
     $split_tags = array_map('trim', explode(',', $tags));
+    $split_tags = array_filter($split_tags);
     return $split_tags;
   }
 
