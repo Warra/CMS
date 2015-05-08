@@ -7,6 +7,7 @@ use App\Tag;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Bus\DispatchesCommands;
+use \Log;
 
 class UpdateArticle extends Command implements SelfHandling {
   use DispatchesCommands;
@@ -40,23 +41,25 @@ class UpdateArticle extends Command implements SelfHandling {
     $article->name = $this->name;
     $article->description = $this->description;
 
+    $article->tags()->detach();
+
     $tag_ids = [];
+    //if tag exists already then attach tag
     foreach ($this->tags as $tag) {
       $id = DB::table('tags')->where('name', $tag)->lists('id');
       if(isset($id[0])) {
         $tag_ids[] = $id[0];
       } else {
+     //if tag does not exist then create and attach it   
         $tag_name = [
             "name" => $tag
         ];
-
         \Bus::dispatch(
-            new CreateTag(new GenerateId, $tag_name)
+            new CreateAndAttachTag(new GenerateId, $tag_name, $article)
         ); 
-        $tag_ids[] = DB::table('tags')->orderBy('created_at', 'desc')->first()->id;
       }
     }
-    $article->tags()->sync($tag_ids);
+    $article->tags()->attach($tag_ids);
     $article->save();
   }
 

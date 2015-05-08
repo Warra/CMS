@@ -50,7 +50,6 @@ class ArticleController extends Controller
     $name = Input::get("name");
     $description = Input::get("description");
     $tags = $this->getTags(Input::get('tags'));
-    // dd($tags);
     \Bus::dispatch(
           new UpdateArticle($id, $name, $description, $tags)
     );
