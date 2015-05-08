@@ -1,4 +1,5 @@
 <?php
+use App\Tag;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,8 @@ Route::get('/tags', [
 Route::post('/tags{id}/', 'TagController@updateShow');
 Route::post('/tags{id}/update', 'TagController@update');
 Route::post('/tags{id}/delete', 'TagController@delete');
+
+Route::get('/tagrequest', function() {
+    $tags = Tag::all();
+    return $tags;
+});
