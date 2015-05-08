@@ -44,19 +44,29 @@ class UpdateArticle extends Command implements SelfHandling {
     $article->tags()->detach();
 
     $tag_ids = [];
-    //if tag exists already then attach tag
+    
     foreach ($this->tags as $tag) {
+      //restore soft deleted tags
+      $restore_id = DB::table('tags')->whereNotNull('deleted_at')->lists('id');
+
+      if(isset($restore_id[0])) {
+          \Bus::dispatch(
+              new RestoreTag($restore_id[0])
+          );
+      }
+
       $id = DB::table('tags')->where('name', $tag)->lists('id');
+      //if tag exists already then attach tag
       if(isset($id[0])) {
         $tag_ids[] = $id[0];
       } else {
-     //if tag does not exist then create and attach it   
+      //if tag does not exist then create and attach it
         $tag_name = [
             "name" => $tag
         ];
         \Bus::dispatch(
             new CreateAndAttachTag(new GenerateId, $tag_name, $article)
-        ); 
+        );
       }
     }
     $article->tags()->attach($tag_ids);
