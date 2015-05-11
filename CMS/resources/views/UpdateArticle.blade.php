@@ -3,8 +3,8 @@
 <head>
   <title>Articles</title>
   {!! HTML::style('css/bootstrap.min.css') !!}
-  {!! HTML::style('css/main.css') !!}
   {!! HTML::style('https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css') !!}
+  {!! HTML::style('css/main.css') !!}
 
   {!! HTML::script('https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js') !!}
   {!! HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js') !!}
@@ -23,8 +23,7 @@
         {!! Form::label('description', 'Description') !!}
         {!! Form::text('description', $article->description, ['class' => 'form-control'])!!} <br />
         {!! Form::label('tags', 'Tags') !!}
-        {!! Form::text('tags', $article->setTagsString(), ['id' => 'tags', 'class' => 'demo-default selectized' ]) !!}
-        {{-- <input type='text' id='tags' name='tags' class='demo-default selectized'></input> --}}
+        {!! Form::text('tags', $article->setTagsString(), ['id' => 'tags', 'class' => 'selectized' ]) !!}
         {!! Form::submit('submit changes', ['class' => 'btn btn-default']) !!}
       {!! Form::close() !!}    
     </div>
@@ -33,6 +32,7 @@
 <script>
   $(document).ready(function(){
       $('#tags').selectize();
+      $('.item').addClass('tag-look');
   });
 </script>
 </html>

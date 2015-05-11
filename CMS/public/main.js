@@ -35,7 +35,8 @@ $(document).ready(function(){
                 }
             });
         },
-        onChange: function(value){
-        }
+        onChange: function(value) {
+            $('.item').addClass('tag-look');
+        },
     });
 });
