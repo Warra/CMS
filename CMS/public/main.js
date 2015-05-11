@@ -1,22 +1,25 @@
 $(document).ready(function(){
     $('#tags').selectize({
         valueField: 'name',
+        delimiter: ',',
         labelField: 'name',
         searchField: ['name'],
-        maxOptions: 10,
+        maxOptions: 5,
         options: [],
-        create: false,
+        persist:false,
+        create: true,
+        closeAfterSelect: true,
         render: {
             option: function(item) {
                 return '<div>'+(item.name)+'</div>';
+            },
+            create: function(input) {
+                return {
+                    value: input,
+                    text: input
+                }
             }
         },
-        // optgroups: [
-        //     {value: 'product', label: 'Products'},
-        //     {value: 'category', label: 'Categories'}
-        // ],
-        // optgroupField: 'class',
-        // optgroupOrder: ['product','category'],
         load: function(query, callback) {
             if (!query.length) return callback();
             $.ajax({
@@ -27,14 +30,12 @@ $(document).ready(function(){
                     callback();
                 },
                 success: function(res) {
-                    // console.log(res[0].name);
-                    // callback(res.data);
-                    callback(res[0].name);
+                    var items = [];
+                    callback(res);
                 }
             });
         },
-        onChange: function(){
-            window.location = this.items[0];
+        onChange: function(value){
         }
     });
 });

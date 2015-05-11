@@ -23,8 +23,8 @@
         {!! Form::label('description', 'Description') !!}
         {!! Form::text('description', $article->description, ['class' => 'form-control'])!!} <br />
         {!! Form::label('tags', 'Tags') !!}
-        {{-- {!! Form::text('tags', $article->setTagsString(), ['id' => 'tags', 'class' => 'form-control'])!!}<br /> --}}
-        <select id="tags" name="q" placeholder="Search products or categories..." class="form-control"></select>
+        {!! Form::text('tags', $article->setTagsString(), ['id' => 'tags', 'class' => 'demo-default selectized' ]) !!}
+        {{-- <input type='text' id='tags' name='tags' class='demo-default selectized'></input> --}}
         {!! Form::submit('submit changes', ['class' => 'btn btn-default']) !!}
       {!! Form::close() !!}    
     </div>
