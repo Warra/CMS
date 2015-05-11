@@ -1,9 +1,29 @@
 <?php 
+/**
+ * Article Class
+ *
+ * PHP version 5
+ *
+ * @category Class
+ * @package  Article
+ * @author   Warren Manley <warrenmanley@gmail.com>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     https://github.com/Warra/CMS
+ */
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Tag;
+ /**
+ * Article Class Doc Comment
+ *
+ * @category Class
+ * @package  Article
+ * @author   Warren Manley <warrenmanley@gmail.com>
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     https://github.com/Warra/CMS
+ */
 
 class Article extends Model
 {
