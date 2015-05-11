@@ -1,4 +1,8 @@
 <?php namespace App\Commands;
+/**
+ * CMS Update Article Command
+ *
+ */
 
 use App\Commands\Command;
 use App\GenerateId;
@@ -9,68 +13,69 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use \Log;
 
-class UpdateArticle extends Command implements SelfHandling {
-  use DispatchesCommands;
+class UpdateArticle extends Command implements SelfHandling
+{
+    use DispatchesCommands;
 
-  protected $id;
-  protected $name;
-  protected $description;
-  protected $tags;
+    protected $id;
+    protected $name;
+    protected $description;
+    protected $tags;
 
-  /**
+    /**
    * Create a new command instance.
    *
    * @return void
    */
-  public function __construct($id, $name, $description, $tags)
-  {
-    $this->id = $id;
-    $this->name = $name;
-    $this->description = $description;
-    $this->tags = $tags;
-  }
+    public function __construct($id, $name, $description, $tags)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->description = $description;
+        $this->tags = $tags;
+    }
 
-  /**
+    /**
    * Execute the command.
    *
    * @return void
    */
-  public function handle()
-  {
-    $article = Article::find($this->id);
-    $article->name = $this->name;
-    $article->description = $this->description;
+    public function handle()
+    {
+        $article = Article::find($this->id);
+        $article->name = $this->name;
+        $article->description = $this->description;
 
-    $article->tags()->detach();
+        $article->tags()->detach();
 
-    $tag_ids = [];
+        $tag_ids = [];
     
-    foreach ($this->tags as $tag) {
-      //restore soft deleted tags
-      $restore_id = DB::table('tags')->whereNotNull('deleted_at')->lists('id');
+        foreach ($this->tags as $tag) {
+            //restore soft deleted tags
+            $restore_id = DB::table('tags')->whereNotNull('deleted_at')->lists('id');
 
-      if(isset($restore_id[0])) {
-          \Bus::dispatch(
-              new RestoreTag($restore_id[0])
-          );
-      }
+            if(isset($restore_id[0])) {
+                \Bus::dispatch(
+                    new RestoreTag($restore_id[0])
+                );
+            }
 
-      $id = DB::table('tags')->where('name', $tag)->lists('id');
-      //if tag exists already then attach tag
-      if(isset($id[0])) {
-        $tag_ids[] = $id[0];
-      } else {
-      //if tag does not exist then create and attach it
-        $tag_name = [
-            "name" => $tag
-        ];
-        \Bus::dispatch(
-            new CreateAndAttachTag(new GenerateId, $tag_name, $article)
-        );
-      }
+            $id = DB::table('tags')->where('name', $tag)->lists('id');
+            //if tag exists already then attach tag
+            if(isset($id[0])) {
+                $tag_ids[] = $id[0];
+            } else {
+                //if tag does not exist then create and attach it
+                $tag_name = [
+                "name" => $tag
+                ];
+                \Bus::dispatch(
+                    new CreateAndAttachTag(new GenerateId, $tag_name, $article)
+                );
+            }
+        }
+        $article->tags()->attach($tag_ids);
+        $article->save();
     }
-    $article->tags()->attach($tag_ids);
-    $article->save();
-  }
 
 }

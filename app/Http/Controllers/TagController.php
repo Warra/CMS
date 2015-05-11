@@ -1,16 +1,23 @@
 <?php namespace App\Http\Controllers;
+/**
+ * CMS Tag Controller
+ *
+ */
+
 use Illuminate\Support\Facades\Input as Input;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use App\Commands\UpdateTag;
 use App\Commands\DeleteTag;
 use App\Tag;
 
-class TagController extends Controller {
+class TagController extends Controller
+{
     use DispatchesCommands;
+
     /**
-     * Show the application welcome screen to the user.
+     * Shows the tag view
      *
-     * @return Response
+     * @return View
      */
     public function view()
     {
@@ -18,7 +25,12 @@ class TagController extends Controller {
         return view('Tags', ['tags' => $tags]);
     }
 
-    public function updateShow($id)
+    /**
+     * Shows the tag view
+     *
+     * @return View
+     */
+    public function updateTagView($id)
     {
         $tag = Tag::where('id', $id)->first();
         return view('UpdateTag', ['tag' => $tag]);
@@ -26,10 +38,11 @@ class TagController extends Controller {
 
 
 
-    public function update($id) {
+    public function update($id) 
+    {
         $name = Input::get('name');    
         \Bus::dispatch(
-              new UpdateTag($id, $name)
+            new UpdateTag($id, $name)
         );
         return redirect()->route('/tags');
     }
@@ -38,7 +51,7 @@ class TagController extends Controller {
     {
         $tag = Tag::where('id', $id)->first();
         \Bus::dispatch(
-              new DeleteTag($id)
+            new DeleteTag($id)
         );
         return redirect()->route('/tags');
     }

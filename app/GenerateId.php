@@ -2,22 +2,23 @@
 
 Use Rhumsaa\Uuid\Uuid;
 
-Class GenerateId {
+Class GenerateId
+{
 
-	private $id;
+    private $id;
 
-	public function __construct()
-	{
-		$this->id = Uuid::uuid4();
-	}
+    public function __construct()
+    {
+        $this->id = Uuid::uuid4();
+    }
 
-	public function toString()
-	{
-		return $this->id->toString();
-	}
+    public function toString()
+    {
+        return $this->id->toString();
+    }
 
-	public function __toString()
-	{
-		return $this->toString();
-	}	
+    public function __toString()
+    {
+        return $this->toString();
+    }    
 }

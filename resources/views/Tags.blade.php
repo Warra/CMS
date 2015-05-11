@@ -23,7 +23,7 @@
             {!! $tag->name !!}    
           </td>
           <td>
-            {!! Form::open(["url"=>action("TagController@updateShow", $tag->id)]) !!}
+            {!! Form::open(["url"=>action("TagController@updateTagView", $tag->id)]) !!}
             {!! Form::submit("update") !!}
             {!! Form::close() !!}
           </td>

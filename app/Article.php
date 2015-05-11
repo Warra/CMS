@@ -4,19 +4,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Tag;
 
-class Article extends Model {
+class Article extends Model
+{
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
     protected $increments = false;
 
-	protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description'];
 
-    public function tags() {
-       return $this->belongsToMany('App\Tag');
+    public function tags() 
+    {
+        return $this->belongsToMany('App\Tag');
     }
 
-    public function setTagsString() {
+    public function setTagsString() 
+    {
         $tags = $this->belongsToMany('App\Tag');
         $tags_arr = $tags->lists('name');
         $tags_str = '';

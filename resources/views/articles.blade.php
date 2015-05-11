@@ -31,7 +31,7 @@
             {!! $article->setTagsString() !!}
           </td>
           <td>
-            {!! Form::open(["url"=>action("ArticleController@updateShow", $article->id)]) !!}
+            {!! Form::open(["url"=>action("ArticleController@updateArticleView", $article->id)]) !!}
             {!! Form::submit("update") !!}
             {!! Form::close() !!}
           </td>

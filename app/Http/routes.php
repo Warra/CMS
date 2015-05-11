@@ -16,32 +16,40 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::controllers(
+    [
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+    ]
+);
 
 //Article Routes
-Route::get('/articles/{id}', 'ArticleController@show');
+// Route::get('/articles/{id}', 'ArticleController@show');
 
-Route::get('/articles', [
+Route::get(
+    '/articles', [
     'as' => '/articles',
-    'uses' => 'ArticleController@view']);
+    'uses' => 'ArticleController@view']
+);
 
-Route::post('/articles/{id}/', 'ArticleController@updateShow');
+Route::post('/articles/{id}/', 'ArticleController@updateArticleView');
 Route::post('/articles/{id}/update', 'ArticleController@update');
 Route::post('/articles/{id}/delete', 'ArticleController@delete');
 
 //Tag Routes
-Route::get('/tags', [
+Route::get(
+    '/tags', [
     'as' => '/tags',
     'uses' => 'TagController@view'
-]);
-Route::post('/tags{id}/', 'TagController@updateShow');
+    ]
+);
+Route::post('/tags{id}/', 'TagController@updateTagView');
 Route::post('/tags{id}/update', 'TagController@update');
 Route::post('/tags{id}/delete', 'TagController@delete');
 
-Route::get('/tagrequest', function() {
-    $tags = Tag::all();
-    return $tags;
-});
+Route::get(
+    '/tagrequest', function () {
+        $tags = Tag::all();
+        return $tags;
+    }
+);

@@ -1,11 +1,16 @@
 <?php namespace App\Commands;
+/**
+ * CMS Restore Tag Command
+ * Restores a tag that has been temporarily deleted
+ */
 
 use App\Commands\Command;
 use App\GenerateId;
 use App\Tag;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class RestoreTag extends Command implements SelfHandling {
+class RestoreTag extends Command implements SelfHandling
+{
 
     protected $id;
     protected $attributes;
