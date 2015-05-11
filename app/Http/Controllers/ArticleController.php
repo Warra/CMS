@@ -91,11 +91,12 @@ class ArticleController extends Controller
         return $this->view();
     }
 
-    //tag functions
-
-    //get tags string
-    //split by ','
-    //return tags in an array
+    /**
+     * Gets the tag object into a format for displaying in the blade template
+     * Splits tags by ','
+     *
+     * @return Array
+     */
     public function getTags($tags) 
     {
         $split_tags = array_map('trim', explode(',', $tags));

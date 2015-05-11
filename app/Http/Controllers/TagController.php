@@ -36,8 +36,12 @@ class TagController extends Controller
         return view('UpdateTag', ['tag' => $tag]);
     }
 
-
-
+    /**
+     * Updates the tag
+     * Gets input data and sends it to the update tag command
+     *
+     * @return Route
+     */
     public function update($id) 
     {
         $name = Input::get('name');    
@@ -47,6 +51,11 @@ class TagController extends Controller
         return redirect()->route('/tags');
     }
 
+    /**
+     * Deletes the specified tag
+     *
+     * @return Route
+     */
     public function delete($id)
     {
         $tag = Tag::where('id', $id)->first();

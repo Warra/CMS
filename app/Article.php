@@ -1,4 +1,5 @@
-<?php namespace App;
+<?php 
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,15 +10,36 @@ class Article extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    /**
+     * Sets the model not to auto increment.
+     *
+     * @var boolean
+     */
     protected $increments = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['name', 'description'];
 
+    /**
+     * Relationship between articles and tags
+     *
+     * @return relationship
+     */
     public function tags() 
     {
         return $this->belongsToMany('App\Tag');
     }
 
+    /**
+     * Sets tags in a workable string
+     *
+     * @return string
+     */
     public function setTagsString() 
     {
         $tags = $this->belongsToMany('App\Tag');
