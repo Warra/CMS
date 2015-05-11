@@ -1,6 +1,6 @@
 ## CMS
 
-[![Build Status](https://magnum.travis-ci.com/Warra/CMS.svg?token=Pa5SXswKxN1VZxnw1Fqp)](https://magnum.travis-ci.com/Warra/CMS)
+[![Build Status](https://travis-ci.org/Warra/CMS.svg?token=Pa5SXswKxN1VZxnw1Fqp)](https://travis-ci.org/Warra/CMS)
 
 ```sh
 > git clone git@github.com:Warra/CMS.git
