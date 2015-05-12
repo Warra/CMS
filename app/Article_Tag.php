@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 // use App\Tag;
 
 class ArticleTag extends Model
@@ -13,14 +14,13 @@ class ArticleTag extends Model
 
     protected $fillable = ['article_id', 'tag_id'];
 
-    public function article() 
+    public function article()
     {
         return $this->belongsTo('App\Article');
     }
 
-    public function tag() 
+    public function tag()
     {
         return $this->belongsTo('App\Tag');
     }
-
 }

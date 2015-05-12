@@ -1,4 +1,5 @@
 <?php namespace App\Commands;
+
 /**
  * CMS Create and Attach Tag Command
  * Creates and attaches a tag to an article
@@ -9,8 +10,7 @@ use App\GenerateId;
 use App\Tag;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-
-Class CreateAndAttachTag extends Command implements SelfHandling
+class CreateAndAttachTag extends Command implements SelfHandling
 {
     protected $id;
     protected $attributes;

@@ -1,4 +1,5 @@
 <?php namespace App\Commands;
+
 /**
  * CMS Delete Article Command
  *
@@ -35,5 +36,4 @@ class DeleteArticle extends Command implements SelfHandling
         $article = Article::find($this->id);
         $article->delete();
     }
-
 }

@@ -1,4 +1,5 @@
 <?php namespace App\Commands;
+
 /**
  * CMS Create Tag Command
  *
@@ -8,7 +9,7 @@ use App\GenerateId;
 use App\Tag;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-Class CreateTag extends Command implements SelfHandling
+class CreateTag extends Command implements SelfHandling
 {
     protected $id;
     protected $attributes;

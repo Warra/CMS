@@ -1,4 +1,5 @@
 <?php namespace App\Http\Controllers;
+
 /**
  * CMS Tag Controller
  *
@@ -42,9 +43,9 @@ class TagController extends Controller
      *
      * @return Route
      */
-    public function update($id) 
+    public function update($id)
     {
-        $name = Input::get('name');    
+        $name = Input::get('name');
         \Bus::dispatch(
             new UpdateTag($id, $name)
         );
@@ -64,5 +65,4 @@ class TagController extends Controller
         );
         return redirect()->route('/tags');
     }
-
 }

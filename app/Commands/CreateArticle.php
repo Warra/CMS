@@ -1,4 +1,5 @@
 <?php namespace App\Commands;
+
 /**
  * CMS Create Article Command
  *
@@ -37,5 +38,4 @@ class CreateArticle extends Command implements SelfHandling
         $article->id = $this->id;
         $article->save();
     }
-
 }

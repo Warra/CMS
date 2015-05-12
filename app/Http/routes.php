@@ -27,7 +27,8 @@ Route::controllers(
 // Route::get('/articles/{id}', 'ArticleController@show');
 
 Route::get(
-    '/articles', [
+    '/articles',
+    [
     'as' => '/articles',
     'uses' => 'ArticleController@view']
 );
@@ -38,7 +39,8 @@ Route::post('/articles/{id}/delete', 'ArticleController@delete');
 
 //Tag Routes
 Route::get(
-    '/tags', [
+    '/tags',
+    [
     'as' => '/tags',
     'uses' => 'TagController@view'
     ]
@@ -48,7 +50,8 @@ Route::post('/tags{id}/update', 'TagController@update');
 Route::post('/tags{id}/delete', 'TagController@delete');
 
 Route::get(
-    '/tagrequest', function () {
+    '/tagrequest',
+    function () {
         $tags = Tag::all();
         return $tags;
     }

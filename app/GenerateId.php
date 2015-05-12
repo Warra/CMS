@@ -1,8 +1,8 @@
 <?php namespace App;
 
-Use Rhumsaa\Uuid\Uuid;
+use Rhumsaa\Uuid\Uuid;
 
-Class GenerateId
+class GenerateId
 {
 
     private $id;
@@ -20,5 +20,5 @@ Class GenerateId
     public function __toString()
     {
         return $this->toString();
-    }    
+    }
 }

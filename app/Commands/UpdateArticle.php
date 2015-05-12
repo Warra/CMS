@@ -1,4 +1,5 @@
 <?php namespace App\Commands;
+
 /**
  * CMS Update Article Command
  *
@@ -54,7 +55,7 @@ class UpdateArticle extends Command implements SelfHandling
             //restore soft deleted tags
             $restore_id = DB::table('tags')->whereNotNull('deleted_at')->lists('id');
 
-            if(isset($restore_id[0])) {
+            if (isset($restore_id[0])) {
                 \Bus::dispatch(
                     new RestoreTag($restore_id[0])
                 );
@@ -62,7 +63,7 @@ class UpdateArticle extends Command implements SelfHandling
 
             $id = DB::table('tags')->where('name', $tag)->lists('id');
             //if tag exists already then attach tag
-            if(isset($id[0])) {
+            if (isset($id[0])) {
                 $tag_ids[] = $id[0];
             } else {
                 //if tag does not exist then create and attach it
@@ -77,5 +78,4 @@ class UpdateArticle extends Command implements SelfHandling
         $article->tags()->attach($tag_ids);
         $article->save();
     }
-
 }

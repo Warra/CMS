@@ -6,5 +6,4 @@ abstract class Seeder extends \Illuminate\Database\Seeder
 {
 
     use DispatchesCommands;
-
 }

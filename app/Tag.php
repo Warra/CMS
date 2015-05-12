@@ -11,9 +11,8 @@ class Tag extends Model
     protected $fillable = ['name'];
     protected $increments = false;
 
-    public function articles() 
+    public function articles()
     {
         return $this->belongsToMany('App\Article');
     }
-
 }

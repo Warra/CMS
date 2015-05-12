@@ -1,4 +1,5 @@
 <?php namespace App\Commands;
+
 /**
  * CMS Update Tag Command
  *
@@ -37,5 +38,4 @@ class UpdateTag extends Command implements SelfHandling
         $tag->name = $this->name;
         $tag->save();
     }
-
 }

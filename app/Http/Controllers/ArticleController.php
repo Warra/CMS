@@ -1,4 +1,5 @@
 <?php namespace App\Http\Controllers;
+
 /**
  * CMS Article Controller
  *
@@ -9,7 +10,6 @@ use Illuminate\Support\Facades\Input as Input;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use App\Commands\UpdateArticle;
 use App\Commands\DeleteArticle;
-
 
 class ArticleController extends Controller
 {
@@ -97,12 +97,10 @@ class ArticleController extends Controller
      *
      * @return Array
      */
-    public function getTags($tags) 
+    public function getTags($tags)
     {
         $split_tags = array_map('trim', explode(',', $tags));
         $split_tags = array_filter($split_tags);
         return $split_tags;
     }
-
-
 }

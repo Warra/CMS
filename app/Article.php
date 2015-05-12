@@ -1,20 +1,10 @@
-<?php 
-/**
- * Article Class
- *
- * PHP version 5
- *
- * @category Class
- * @package  Article
- * @author   Warren Manley <warrenmanley@gmail.com>
- * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
- * @link     https://github.com/Warra/CMS
- */
+<?php
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Tag;
+
  /**
  * Article Class Doc Comment
  *
@@ -50,7 +40,7 @@ class Article extends Model
      *
      * @return relationship
      */
-    public function tags() 
+    public function tags()
     {
         return $this->belongsToMany('App\Tag');
     }
@@ -60,16 +50,15 @@ class Article extends Model
      *
      * @return string
      */
-    public function setTagsString() 
+    public function setTagsString()
     {
         $tags = $this->belongsToMany('App\Tag');
         $tags_arr = $tags->lists('name');
         $tags_str = '';
         foreach ($tags_arr as $tag) {
             $tags_str .= ', '.$tag;
-        } 
+        }
         $tags_str = substr_replace($tags_str, '', 0, 2);
-        return $tags_str; 
+        return $tags_str;
     }
-
 }

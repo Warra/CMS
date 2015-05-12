@@ -1,4 +1,5 @@
 <?php namespace App\Commands;
+
 /**
  * CMS Delete Article Command
  *
@@ -35,5 +36,4 @@ class DeleteTag extends Command implements SelfHandling
         $tag = Tag::find($this->id);
         $tag->delete();
     }
-
 }

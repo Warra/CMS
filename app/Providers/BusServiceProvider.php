@@ -18,7 +18,9 @@ class BusServiceProvider extends ServiceProvider
             function ($command) {
         
                 return Dispatcher::simpleMapping(
-                    $command, 'App\Commands', 'App\Handlers\Commands'
+                    $command,
+                    'App\Commands',
+                    'App\Handlers\Commands'
                 );
             }
         );
@@ -33,5 +35,4 @@ class BusServiceProvider extends ServiceProvider
     {
         //
     }
-
 }

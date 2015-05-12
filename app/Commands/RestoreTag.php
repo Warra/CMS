@@ -1,4 +1,5 @@
 <?php namespace App\Commands;
+
 /**
  * CMS Restore Tag Command
  * Restores a tag that has been temporarily deleted
@@ -36,5 +37,4 @@ class RestoreTag extends Command implements SelfHandling
         // $tag = Tag::whereNotNull('')->
         $tag->restore();
     }
-
 }
